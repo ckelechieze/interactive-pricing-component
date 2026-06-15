@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <!--tailwind css link-->
+  <link rel="stylesheet" href="./src/output.css"> 
+  
+  <!--tailwind css link-->
+  <link rel="stylesheet" href="./style.css">
+
+  <title>Frontend Mentor | Interactive pricing component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 0.6875rem; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+
+<!--BODY-->
+<body class="bg-[#c9d3e5]">
+
+  <!--CONTAINER-->
+  <section class="bg-white w-[100%] shadow-2xl">
+    <!--HEADER-->
+    <header class="bg-[#f1f5fe] relative pt-52 pb-58 rounded-bl-[150px]">
+      <!--circle image-->
+      <div class="flex items-center justify-center px-8 py-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"> >
+        <img class="w-50 h-full" src="./images/pattern-circles.svg" alt="circles">
+      </div>
+
+      <!--heading/text-->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <h1 class="text-[#0f1427] text-2xl font-bold text-center pb-4">
+          Simple, traffic-based pricing
+        </h1>
+        <p class="text-[#adb2be] text-center">
+          Sign-up for our 30-day trial, No credit card required
+        </p>
+      </div>
+    </header>
+
+    <!--card-->
+    <section class="bg-white w-[90%] mx-auto rounded-lg shadow-gray-700-2xl absolute top-80 left-1/2 -translate-x-1/2">
+      <div>
+        <p id="pageviews" class="text-center px-8 py-4 text-lg text-[#adb2be]">100K PAGEVIEWS</p>
+      </div>
+
+      <!--Slider-->
+      <div class="flex flex-col items-center justify-center w-full">
+        <input id="slider" type="range" min="0" max="40" value="20" step="10" class="w-[80%]">
+      </div>
+
+      <!--price-->
+      <div class="flex items-center justify-center gap-4 mt-8">
+        <h2 class="mt-8 text-4xl font-bold text-center">
+          $<span id="price">16</span>.00
+        </h2>
+        <span class="text-[#adb2be] pt-8 text-lg">/month</span>
+      </div>
+
+      <!--billings-->
+      <div class="flex items-center justify-center gap-2 mt-8">
+        <p id="monthly-billing" class="text-[#adb2be]">Monthly Billing</p>
+         
+        <!--billing toggle-->
+        <label class="relative inline-flex cursor-pointer items-center">
+          <input id="billing-toggle" type="checkbox" class="peer sr-only">
+          <!--main body of switch-->
+          <div class="h-[15px] w-[30px] rounded-full bg-gray-300 peer-checked:bg-[#16d6c1] transition-colors"></div>
+
+          <!--knob-->
+          <div class="absolute left-[2px] top-[2px] w-[12px] h-[12px] rounded-full bg-white transition-transform peer-checked:translate-x-3.5">
+          </div>
+        </label>
+
+        <p id="yearly-billing" class="text-[#adb2be]">Yearly Billing</p>
+
+        <!--discount-->
+        <div class="flex items-center justify-center bg-[#fbece5] text-[#efc5b5] text-xl font-bold w-[75px] px-6 rounded-4xl">
+          -25%
+        </div>
+      </div>
+
+      <hr class="border-t border-gray-200 mt-12">
+
+      <!--Features-->
+      <div class="flex flex-col items-center justify-center gap-2 mt-6">
+        <div class="flex items-center justify-center gap-4">
+          <img src="./images/icon-check.svg" alt="check">
+          <p class="text-[#adb2be]">Unlimited websites</p>
+        </div>
+        <div class="flex items-center justify-center gap-4">
+          <img src="./images/icon-check.svg" alt="check">
+          <p class="text-[#adb2be]">100% data ownership</p>
+        </div>
+        <div class="flex items-center justify-center gap-4">
+          <img src="./images/icon-check.svg" alt="check">
+          <p class="text-[#adb2be]">Email reports</p>
+        </div>
+      </div>
+
+      <!--button-->
+      <div class="mt-8 mb-8 flex items-center justify-center">
+        <button class="bg-[#293356] text-white font-semibold text-xl px-12 py-3 rounded-full">Start my trial</button>
+      </div>
+      
+    </section>
+  </section>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Kelechi Eze</a>.
+  </footer>
+
+  <!--Javascript-->
+  <script>
+    const slider = document.getElementById("slider");
+    const pageViewsData = ["10K", "50K", "100K", "500K", "1M"];
+    const priceData = [8, 12, 16, 24, 36];
+    const yearlyBilling = document.getElementById("yearly-billing");
+    const monthlyBilling = document.getElementById("monthly-billing");
+
+    const pageViews = document.getElementById("pageviews");
+    const price = document.getElementById("price");
+    const billingToggle = document.getElementById("billing-toggle");
+
+    function updateUI() {
+      const index = slider.value / 10;
+
+      let currentPrice = priceData[index];
+
+      pageViews.textContent = pageViewsData[index] + " PAGEVIEWS";
+
+    //billing toggle
+    if (billingToggle.checked) {
+      currentPrice = currentPrice * 0.75;
+      yearlyBilling.style.color = "#21b0a0";
+      yearlyBilling.style.border = "1px solid #21b0a0";
+      monthlyBilling.style.color = "#c9d3e5";
+      monthlyBilling.style.border = "none";
+      yearlyBilling.style.borderRadius = "8px";
+    }
+    else {
+      yearlyBilling.style.color = "#c9d3e5";
+      monthlyBilling.style.color = "#21b0a0";
+      yearlyBilling.style.border = "none";
+      monthlyBilling.style.border = "1px solid #21b0a0";
+      monthlyBilling.style.borderRadius = "8px";
+    }
+
+     price.textContent = currentPrice;
+
+      //for slider color change
+      const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+
+      console.log(percentage);
+
+      slider.style.background = `linear-gradient(
+      to right, 
+      #16d6c1 0%,
+      #16d6c1 ${percentage}%,
+      #c9d3e5 ${percentage}%,
+      #c9d3e5 100%
+      )`;
+    };
+
+    slider.addEventListener("input", updateUI);
+
+    updateUI();
+
+    billingToggle.addEventListener("change", updateUI);
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+#slider {
+    appearance: none;
+    width: 80%;
+    height: 8px;
+    border-radius: 999px;
+}
+
+#slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    background: #21b0a0;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -16px;
+    box-shadow: 0 20px 20px rgba(16, 213, 194, 0.5);
+}
+
+#slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+}
