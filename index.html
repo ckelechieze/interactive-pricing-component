@@ -46,13 +46,15 @@
 
     <!--card-->
     <section class="bg-white w-[90%] mx-auto rounded-lg shadow-gray-700-2xl absolute top-80 left-1/2 -translate-x-1/2">
-      <div class="md:flex items-center justify-center gap-12 md:mb-12">
+
+      <!--price/views for md screens-->
+      <div class="md:flex items-center justify-center gap-12 md:mb-12 hidden">
         <p id="pageviews" class="text-center px-8 py-4 text-lg text-[#adb2be] md:font-bold md:mt-8">100K PAGEVIEWS</p>
 
-        <!--price-->
-        <div class="md:flex items-center justify-center gap-4 mt-8 md:mt-0 hidden">
+        <!--price for md screens-->
+        <div class="md:flex items-center justify-center gap-4 mt-8 md:mt-0">
           <h2 class="mt-8 text-4xl font-bold text-center">
-          $<span id="price">16</span>.00
+          $<span id="desktop-price">16</span>.00
           </h2>
           <span class="text-[#adb2be] pt-8 text-lg">/month</span>
         </div>
@@ -63,10 +65,10 @@
         <input id="slider" type="range" min="0" max="40" value="20" step="10" class="w-[80%]">
       </div>
 
-      <!--price-->
+      <!--mobile-price-->
       <div class="flex items-center justify-center gap-4 mt-8 md:hidden">
         <h2 class="mt-8 text-4xl font-bold text-center">
-          $<span id="price">16</span>.00
+          $<span id="mobile-price">16</span>.00
         </h2>
         <span class="text-[#adb2be] pt-8 text-lg">/month</span>
       </div>
@@ -137,7 +139,8 @@
     const monthlyBilling = document.getElementById("monthly-billing");
 
     const pageViews = document.getElementById("pageviews");
-    const price = document.getElementById("price");
+    const desktopPrice = document.getElementById("desktop-price");
+    const mobilePrice = document.getElementById("mobile-price");
     const billingToggle = document.getElementById("billing-toggle");
 
     function updateUI() {
@@ -164,7 +167,8 @@
       monthlyBilling.style.borderRadius = "8px";
     }
 
-     price.textContent = currentPrice;
+     mobilePrice.textContent = currentPrice;
+     desktopPrice.textContent = currentPrice;
 
       //for slider color change
       const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
