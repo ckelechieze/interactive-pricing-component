@@ -35,10 +35,10 @@
 
       <!--heading/text-->
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <h1 class="text-[#0f1427] text-2xl font-bold text-center pb-4">
+        <h1 class="text-[#0f1427] text-2xl font-bold text-center pb-4 md:text-3xl">
           Simple, traffic-based pricing
         </h1>
-        <p class="text-[#adb2be] text-center">
+        <p class="text-[#adb2be] text-center md:text-xl md:font-semibold">
           Sign-up for our 30-day trial, No credit card required
         </p>
       </div>
@@ -46,17 +46,25 @@
 
     <!--card-->
     <section class="bg-white w-[90%] mx-auto rounded-lg shadow-gray-700-2xl absolute top-80 left-1/2 -translate-x-1/2">
-      <div>
-        <p id="pageviews" class="text-center px-8 py-4 text-lg text-[#adb2be]">100K PAGEVIEWS</p>
+      <div class="md:flex items-center justify-center gap-12 md:mb-12">
+        <p id="pageviews" class="text-center px-8 py-4 text-lg text-[#adb2be] md:font-bold md:mt-8">100K PAGEVIEWS</p>
+
+        <!--price-->
+        <div class="md:flex items-center justify-center gap-4 mt-8 md:mt-0 hidden">
+          <h2 class="mt-8 text-4xl font-bold text-center">
+          $<span id="price">16</span>.00
+          </h2>
+          <span class="text-[#adb2be] pt-8 text-lg">/month</span>
+        </div>
       </div>
 
       <!--Slider-->
-      <div class="flex flex-col items-center justify-center w-full">
+      <div class="flex flex-col items-center justify-center w-full mt-8 mb-12">
         <input id="slider" type="range" min="0" max="40" value="20" step="10" class="w-[80%]">
       </div>
 
       <!--price-->
-      <div class="flex items-center justify-center gap-4 mt-8">
+      <div class="flex items-center justify-center gap-4 mt-8 md:hidden">
         <h2 class="mt-8 text-4xl font-bold text-center">
           $<span id="price">16</span>.00
         </h2>
@@ -64,7 +72,7 @@
       </div>
 
       <!--billings-->
-      <div class="flex items-center justify-center gap-2 mt-8">
+      <div class="flex items-center justify-center gap-2 mt-8 md:gap-6">
         <p id="monthly-billing" class="text-[#adb2be]">Monthly Billing</p>
          
         <!--billing toggle-->
@@ -88,8 +96,10 @@
 
       <hr class="border-t border-gray-200 mt-12">
 
-      <!--Features-->
-      <div class="flex flex-col items-center justify-center gap-2 mt-6">
+      <!--Features/button-->
+      <div class="md:flex gap-16 items-center justify-center md:gap-48">
+        <!--features-->
+      <div class="flex flex-col items-center justify-center gap-2 mt-6 md:items-start">
         <div class="flex items-center justify-center gap-4">
           <img src="./images/icon-check.svg" alt="check">
           <p class="text-[#adb2be]">Unlimited websites</p>
@@ -106,7 +116,8 @@
 
       <!--button-->
       <div class="mt-8 mb-8 flex items-center justify-center">
-        <button class="bg-[#293356] text-white font-semibold text-xl px-12 py-3 rounded-full">Start my trial</button>
+        <button class="bg-[#293356] text-white font-semibold text-xl px-12 py-3 rounded-full md:text-lg md:px-8 md:py-2">Start my trial</button>
+      </div>
       </div>
       
     </section>
@@ -174,6 +185,15 @@
     updateUI();
 
     billingToggle.addEventListener("change", updateUI);
+
+    //slider thumb active states
+    slider.addEventListener("pointerdown", () => {
+      slider.classList.add("active");
+    });
+
+    slider.addEventListener("pointerup", () => {
+      slider.classList.remove("active");
+    });
   </script>
 </body>
 </html>
